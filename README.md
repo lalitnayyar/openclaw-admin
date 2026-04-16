@@ -6,6 +6,15 @@ Unofficial **browser UI and API** for editing OpenClaw’s `openclaw.json` (JSON
 
 **DISCLAIMER:** This software is provided “as is”, without express or implied warranty. You are solely responsible for configuration backups, validation, credential handling, and any impact on your OpenClaw gateway. This project is not affiliated with or endorsed by the OpenClaw project unless separately stated.
 
+## Screenshots
+
+High-fidelity **vector previews** (SVG) of the three entry surfaces — layout and colors follow the running app. Replace these files under `docs/screenshots/` with your own **PNG** exports from the browser if you prefer raster images in the README.
+
+| Home (`/`) | Classic workspace (`/classic`) | Workflow studio (`/studio`) |
+| :--------: | :----------------------------: | :-------------------------: |
+| ![Home / landing](./docs/screenshots/01-landing.svg) | ![Classic workspace](./docs/screenshots/02-classic-workspace.svg) | ![Workflow studio](./docs/screenshots/03-workflow-studio.svg) |
+| Choose **Classic** or **Studio** | Tabs, connection card, Raw JSON5 | Step rail, aurora theme, guided **Connect → Ship** |
+
 ---
 
 ## Prerequisites

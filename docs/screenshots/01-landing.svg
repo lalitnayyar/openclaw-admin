@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c0f14"/>
+      <stop offset="100%" style="stop-color:#121822"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3d9fff;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <ellipse cx="640" cy="-80" rx="900" ry="400" fill="url(#glow)"/>
+  <text x="640" y="120" text-anchor="middle" fill="#3d9fff" font-family="system-ui,sans-serif" font-size="14" font-weight="700" letter-spacing="0.28em">OPENCLAWADMIN</text>
+  <text x="640" y="185" text-anchor="middle" fill="#e8edf5" font-family="system-ui,sans-serif" font-size="42" font-weight="700">Configure OpenClaw your way</text>
+  <text x="640" y="235" text-anchor="middle" fill="#8b9cb3" font-family="system-ui,sans-serif" font-size="17">Two interfaces, one JSON pipeline - same Express API and openclaw.json buffer.</text>
+  <rect x="180" y="300" width="400" height="260" rx="16" fill="#161d2a" stroke="#243044" stroke-width="1"/>
+  <text x="220" y="345" fill="#e8edf5" font-family="system-ui,sans-serif" font-size="22">*</text>
+  <text x="260" y="355" fill="#e8edf5" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Classic workspace</text>
+  <text x="220" y="395" fill="#8b9cb3" font-family="system-ui,sans-serif" font-size="15">Tabs for Raw JSON5, Browse, Channels,</text>
+  <text x="220" y="420" fill="#8b9cb3" font-family="system-ui,sans-serif" font-size="15">Plugins, and Agents.</text>
+  <text x="220" y="500" fill="#3d9fff" font-family="system-ui,sans-serif" font-size="15" font-weight="600">Open classic</text>
+  <rect x="700" y="300" width="400" height="260" rx="16" fill="#241c3a" stroke="rgba(168,85,247,0.45)" stroke-width="1"/>
+  <text x="740" y="345" fill="#e8edf5" font-family="system-ui,sans-serif" font-size="22">+</text>
+  <text x="780" y="355" fill="#e8edf5" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Workflow studio</text>
+  <text x="740" y="395" fill="#9c96b8" font-family="system-ui,sans-serif" font-size="15">Guided steps: Connect through Ship with</text>
+  <text x="740" y="420" fill="#9c96b8" font-family="system-ui,sans-serif" font-size="15">aurora visuals; same backend.</text>
+  <text x="740" y="500" fill="#c4b5fd" font-family="system-ui,sans-serif" font-size="15" font-weight="600">Enter studio</text>
+  <text x="640" y="640" text-anchor="middle" fill="#5a6578" font-family="system-ui,sans-serif" font-size="13">Vector preview - openclawadmin home (/)</text>
+</svg>
