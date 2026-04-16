@@ -117,6 +117,21 @@ For **AI-assisted development** and full solution requirements, see **[AGENTS.md
 
 ---
 
+## Repository (GitHub)
+
+Canonical remote: **[github.com/lalitnayyar/openclaw-admin](https://github.com/lalitnayyar/openclaw-admin)**.
+
+This clone may already have `origin` set to that URL. After you authenticate (`gh auth login`, **SSH** keys, or an **HTTPS** credential helper), publish `main`:
+
+```bash
+git remote -v
+git push -u origin main
+```
+
+To open a **pull request** with the solution summary (for example from branch `feature/initial-openclawadmin`), push the branch and use GitHub’s **Compare & pull request** (base: `main`). Paste the contents of **[PR_BODY.md](./PR_BODY.md)** into the PR description, then merge when checks pass.
+
+---
+
 ## Upstream references
 
 - [OpenClaw documentation](https://docs.openclaw.ai/)
