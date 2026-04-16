@@ -1,0 +1,18 @@
+{
+  // openclawadmin — client TypeScript config. DISCLAIMER: as-is, no warranty. Maintainer: Lalit Nayyar <lalitnayyar@gmail.com>
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src"]
+}

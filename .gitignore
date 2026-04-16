@@ -1,0 +1,7 @@
+# openclawadmin — DISCLAIMER: provided as-is without warranty. Maintainer: Lalit Nayyar <lalitnayyar@gmail.com>
+
+node_modules
+dist
+dist-server
+.env
+*.log
