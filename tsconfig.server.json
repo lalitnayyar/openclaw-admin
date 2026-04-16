@@ -1,0 +1,18 @@
+{
+  // openclawadmin — server TypeScript config. DISCLAIMER: as-is, no warranty. Maintainer: Lalit Nayyar <lalitnayyar@gmail.com>
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist-server",
+    "rootDir": ".",
+    "declaration": false,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["server/**/*.ts"]
+}
