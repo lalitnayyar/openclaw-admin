@@ -31,7 +31,15 @@ npm run dev
 - **Frontend (Vite):** [http://127.0.0.1:5173](http://127.0.0.1:5173) — proxies `/api` to the local API.
 - **API (Express):** [http://127.0.0.1:3847](http://127.0.0.1:3847) by default.
 
-Open the UI, set **Gateway / Control UI base URL** (e.g. `http://127.0.0.1:18789` or your host IP) and **`openclaw.json` path** (default `~/.openclaw/openclaw.json`), then **Reload file**, edit, **Validate**, and **Save to disk**.
+Open the UI at [http://127.0.0.1:5173/](http://127.0.0.1:5173/) — the **home** page lets you choose:
+
+| Route | Experience |
+|-------|------------|
+| **`/`** | **Landing** — pick Classic or Studio. |
+| **`/classic`** | **Classic workspace** — original tabbed UI (Raw JSON5, Browse, Channels, Plugins, Agents). |
+| **`/studio`** | **Workflow studio** — guided step flow with a separate visual theme; same JSON buffer and backend. |
+
+Set **Gateway / Control UI base URL** (e.g. `http://127.0.0.1:18789` or your host IP) and **`openclaw.json` path** (default `~/.openclaw/openclaw.json`), then **Reload file**, edit, **Validate**, and **Save to disk**. Settings are shared between Classic and Studio via `localStorage`.
 
 ---
 
@@ -106,11 +114,16 @@ Always keep **backups** of `openclaw.json` before bulk edits.
 ## Project layout (high level)
 
 ```
-server/index.ts     Express API, validation, file I/O, gateway probe
-src/App.tsx         Tabs, connection bar, save/validate, footer
-src/components/     ConfigExplorer (Browse tab)
-src/lib/            API client, JSON5 merge helpers, disclaimer strings
-vite.config.ts      Dev server + `/api` proxy
+server/index.ts              Express API, validation, file I/O, gateway probe
+src/App.tsx                  Router + ConfigEditorProvider
+src/context/ConfigEditorContext.tsx   Shared JSON / gateway state
+src/classic/ClassicWorkspace.tsx      Tabbed classic UI
+src/studio/StudioWorkflow.tsx         Workflow studio UI + studio.css
+src/Landing.tsx              Mode picker (/)
+src/shared/panels.tsx        Channels / Plugins / Agents panels
+src/components/ConfigExplorer.tsx     Channel explorer tree
+src/lib/                     API client, JSON5 merge, disclaimer
+vite.config.ts               Dev server + `/api` proxy
 ```
 
 For **AI-assisted development** and full solution requirements, see **[AGENTS.md](./AGENTS.md)**.
@@ -129,6 +142,16 @@ git push -u origin main
 ```
 
 To open a **pull request** with the solution summary (for example from branch `feature/initial-openclawadmin`), push the branch and use GitHub’s **Compare & pull request** (base: `main`). Paste the contents of **[PR_BODY.md](./PR_BODY.md)** into the PR description, then merge when checks pass.
+
+**Dual-UI update (classic + workflow studio):** branch `feature/dual-ui-studio-workflow` — use **[PR_DUAL_UI.md](./PR_DUAL_UI.md)** as the PR body. With [GitHub CLI](https://cli.github.com/) (`gh auth login`):
+
+```bash
+git push -u origin feature/dual-ui-studio-workflow
+gh pr create --base main --head feature/dual-ui-studio-workflow \
+  --title "feat: dual UI — classic workspace + workflow studio" \
+  --body-file PR_DUAL_UI.md
+gh pr merge --merge --delete-branch
+```
 
 ---
 

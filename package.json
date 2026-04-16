@@ -16,7 +16,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "json5": "^2.2.3"
+    "json5": "^2.2.3",
+    "react-router-dom": "^7.6.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

@@ -16,7 +16,8 @@ This file is for **AI coding agents** and **human maintainers** who need the ful
 | **Update `openclaw.json` directly** with validation | **PUT `/api/config`** writes the resolved path after **JSON5 parse** and, by default, **`openclaw config validate --json`** on a temp file with `OPENCLAW_CONFIG_PATH` set. |
 | **Validation aligned with OpenClaw** | Same CLI as documented in [Configuration](https://docs.openclaw.ai/configuration) / [CLI config](https://docs.openclaw.ai/cli/config). Optional **skip CLI** save path when `openclaw` is absent on the server. |
 | **Master / gateway connection** (localhost or user-supplied IP) | UI fields: **Gateway base URL**, optional **token** (sent as `Authorization: Bearer` and `x-openclaw-token` on probe), **`openclaw.json` path**. Persisted in `localStorage`. Probe uses **GET `/api/gateway/probe`** (server-side `fetch` to avoid CORS). |
-| **Browse existing configuration** (explorer UX) | **Browse** tab: sidebar lists `channels.*` keys; detail pane shows **expandable tree** of name/value; sensitive key names masked for string leaves. Reflects **in-memory editor buffer** (including unsaved edits). |
+| **Browse existing configuration** (explorer UX) | **Classic → Browse** tab, and **Studio → Channels** step embeds the same explorer: sidebar lists `channels.*` keys; detail pane shows **expandable tree** of name/value; sensitive key names masked for string leaves. Reflects **in-memory editor buffer** (including unsaved edits). |
+| **Two UI modes (classic + eye-catching workflow)** | **`/`** landing; **`/classic`** preserved tabbed UI; **`/studio`** guided steps (Connect → Sync → Channels → Plugins → Agents → Blueprint → Ship) with `src/studio/studio.css` visuals. Same `ConfigEditorProvider` and Express JSON pipeline. |
 | **Attribution & disclaimer** | Footer in UI; file headers; `package.json` author/description; `/api/health` payload; see `src/lib/disclaimer.ts`. |
 
 **Non-goals (unless explicitly requested later):**
@@ -47,8 +48,12 @@ Config file location and JSON5 behavior are described in the Configuration page 
 ## 3. Architecture
 
 ```
-Browser (React + Vite)
-  ├─ localStorage: gateway URL, token, config path
+Browser (React + Vite + react-router-dom)
+  ├─ /              Landing.tsx — choose UI mode
+  ├─ /classic       ClassicWorkspace.tsx — tabbed editor (original UX)
+  ├─ /studio        StudioWorkflow.tsx — workflow stepper + studio.css theme
+  ├─ ConfigEditorProvider (shared state: gateway, path, editor JSON, load/save/validate)
+  ├─ localStorage: gateway URL, token, config path (shared across routes)
   └─ fetch("/api/…")  ──►  Express (server/index.ts)
                               ├─ fs read/write + path expand ~
                               ├─ child_process: openclaw config validate
@@ -56,7 +61,7 @@ Browser (React + Vite)
 ```
 
 - **Development:** Vite **5173**, API **3847**, `vite.config.ts` proxies `/api` → `127.0.0.1:3847`.
-- **Production:** Single Node process serves **`dist/`** static assets and `/api/*` (see `NODE_ENV` branch in `server/index.ts`).
+- **Production:** Single Node process serves **`dist/`** static assets and `/api/*` (see `NODE_ENV` branch in `server/index.ts`). Client-side routes (`/classic`, `/studio`) rely on the SPA fallback serving `index.html`.
 
 ---
 
@@ -65,7 +70,12 @@ Browser (React + Vite)
 | Path | Responsibility |
 |------|------------------|
 | `server/index.ts` | Express app: health, config CRUD, validate, gateway probe; `OPENCLAWADMIN_PORT`, `OPENCLAW_CONFIG_PATH`; production static + SPA fallback. |
-| `src/App.tsx` | Layout, tabs (Raw, Browse, Channels, Plugins, Agents), connection bar, validate/save, merge callbacks, disclaimer footer. |
+| `src/App.tsx` | `BrowserRouter`, `ConfigEditorProvider`, routes `/`, `/classic`, `/studio`. |
+| `src/context/ConfigEditorContext.tsx` | Shared gateway path, editor buffer, load/save/validate/probe, merge helpers. |
+| `src/classic/ClassicWorkspace.tsx` | Tabbed classic UI (Raw, Browse, Channels, Plugins, Agents) + footer. |
+| `src/studio/StudioWorkflow.tsx` | Workflow stepper + `studio.css` theme. |
+| `src/Landing.tsx` | Entry hub to pick Classic vs Studio. |
+| `src/shared/panels.tsx` | `ChannelsPanel`, `PluginsPanel`, `AgentsPanel` for both UIs. |
 | `src/components/ConfigExplorer.tsx` | File-explorer style **channels** browser + recursive tree, masking. |
 | `src/lib/api.ts` | Typed `fetch` wrappers for `/api/*`. |
 | `src/lib/merge.ts` | `parseConfig`, `setPath` for shallow merge of `channels` / `plugins` slices. |
