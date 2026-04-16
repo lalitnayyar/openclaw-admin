@@ -143,6 +143,16 @@ git push -u origin main
 
 To open a **pull request** with the solution summary (for example from branch `feature/initial-openclawadmin`), push the branch and use GitHub’s **Compare & pull request** (base: `main`). Paste the contents of **[PR_BODY.md](./PR_BODY.md)** into the PR description, then merge when checks pass.
 
+**Dual-UI update (classic + workflow studio):** branch `feature/dual-ui-studio-workflow` — use **[PR_DUAL_UI.md](./PR_DUAL_UI.md)** as the PR body. With [GitHub CLI](https://cli.github.com/) (`gh auth login`):
+
+```bash
+git push -u origin feature/dual-ui-studio-workflow
+gh pr create --base main --head feature/dual-ui-studio-workflow \
+  --title "feat: dual UI — classic workspace + workflow studio" \
+  --body-file PR_DUAL_UI.md
+gh pr merge --merge --delete-branch
+```
+
 ---
 
 ## Upstream references
